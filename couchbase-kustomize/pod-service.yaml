@@ -1,0 +1,23 @@
+---
+### this pod level service will allow Couchbase-SDK to connect to Couchbase
+### your APP should live in the same cluster with Couchbase
+apiVersion: v1
+kind: Service
+metadata:
+  name: couchbase-db
+  namespace: couchbase
+  labels:
+    app: couchbase-db
+  annotations:
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+spec:
+  clusterIP: None
+  ports:
+  - name: http
+    port: 8091
+    targetPort: http
+  - name: https
+    port: 18091
+    targetPort: https
+  selector:
+    app: couchbase-db

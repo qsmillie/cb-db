@@ -1,0 +1,13 @@
+---
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: couchbase-db
+  namespace: couchbase
+  labels:
+    app: couchbase-db
+spec:
+  selector:
+    matchLabels:
+      app: couchbase-db
+  maxUnavailable: 1
